@@ -13,7 +13,7 @@ from utilities import helper
 from utilities import train_class
 from utilities import test_class
 
-from model import CNN_Classifier
+from model import CNN_Classifier_1, CNN_Classifier_2
 
 # Define transforms for the training data and testing data
 train_transforms = transforms.Compose([transforms.RandomRotation(30),
@@ -59,7 +59,7 @@ test_loader = torch.utils.data.DataLoader(test_data, batch_size=32)
 
 
 if __name__=='__main__':
-    model_scratch = CNN_Classifier(n_feature=16, output_size=2)
+    model_scratch = CNN_Classifier_2(n_feature=16, output_size=2)
 
     loaders_scratch = {'train': train_loader, 'valid' : valid_loader, 'test': test_loader}
 
@@ -78,7 +78,7 @@ if __name__=='__main__':
     print(model_scratch)
 
     model_scratch = train_class.train(10, loaders_scratch, model_scratch, optimizer_scratch, 
-                      criterion_scratch, use_cuda, './model/model_scratch.pt')
+                      criterion_scratch, use_cuda, './model/model_scratch.pt') # You can rename this file to save different check point
 
     # load the model that got the best validation accuracy
     # model_scratch.load_state_dict(torch.load('./model/model_scratch.pt')) # uncomment only to load the saved model
