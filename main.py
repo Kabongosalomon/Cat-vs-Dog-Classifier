@@ -67,7 +67,7 @@ if __name__=='__main__':
     criterion_scratch = nn.CrossEntropyLoss()
 
     ### select optimizer
-    optimizer_scratch = optim.SGD(model_scratch.parameters(), lr=0.05)
+    optimizer_scratch = optim.SGD(model_scratch.parameters(), lr=0.03)
 
     # move tensors to GPU if CUDA is available
     use_cuda = torch.cuda.is_available()
@@ -77,7 +77,7 @@ if __name__=='__main__':
 
     print(model_scratch)
 
-    model_scratch = train_class.train(5, loaders_scratch, model_scratch, optimizer_scratch, 
+    model_scratch = train_class.train(10, loaders_scratch, model_scratch, optimizer_scratch, 
                       criterion_scratch, use_cuda, './model/model_scratch.pt')
 
     # load the model that got the best validation accuracy

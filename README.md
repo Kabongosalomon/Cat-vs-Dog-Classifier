@@ -16,3 +16,19 @@ In this problem we will write an algorithm to classify whether images contain ei
 ## Screenshot Model training 
 ![Model Screen][image2]
 
+## Getting Started
+### Installation
+
+- Clone this repo:
+```bash
+git clone https://github.com/Kabongosalomon/Cat-vs-Dog-Classifier.git 
+cd Cat-vs-Dog-Classifier
+```
+
+- Download our preprocessed data from [here](https://drive.google.com/file/d/1Cn0B9Zr2irUnZcHqODT9IilGHf9fZ61R/view).
+
+### Run the main file
+
+```python
+python main.py
+```
