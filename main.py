@@ -73,10 +73,13 @@ if __name__=='__main__':
     use_cuda = torch.cuda.is_available()
 
     if use_cuda:
+        print("yupiii we are on GPU :)")
         model_scratch.cuda()
 
     print(model_scratch)
 
+    # Training
+    print('Training ....')
     model_scratch = train_class.train(10, loaders_scratch, model_scratch, optimizer_scratch, 
                       criterion_scratch, use_cuda, './model/model_cnn_2.pt') # You can rename this file to save different check point
 
@@ -84,4 +87,5 @@ if __name__=='__main__':
     # model_scratch.load_state_dict(torch.load('./model/model_scratch.pt')) # uncomment only to load the saved model
 
     # Testing
+    print('Testing ....')
     test_class.test(loaders_scratch, model_scratch, criterion_scratch, use_cuda)
