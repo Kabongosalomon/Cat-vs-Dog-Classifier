@@ -10,8 +10,8 @@ class CNN_Classifier_1(nn.Module):
         
         ## Define layers of a CNN
         self.conv1 = nn.Conv2d(3, n_feature*2**1, 3, padding=1, stride=2)
-        self.conv2 = nn.Conv2d(32, n_feature*2**2, 3, padding=1, stride=2)
-        self.conv3 = nn.Conv2d(64, n_feature*2**3, 3, padding=1)
+        self.conv2 = nn.Conv2d(n_feature*2**1, n_feature*2**2, 3, padding=1, stride=2)
+        self.conv3 = nn.Conv2d(n_feature*2**2, n_feature*2**3, 3, padding=1)
         
         # max pooling layer
         self.pool = nn.MaxPool2d(2, 2)
@@ -45,9 +45,9 @@ class CNN_Classifier_2(nn.Module):
         
         ## Define layers of a CNN
         self.conv1 = nn.Conv2d(3, n_feature*2**1, 3, padding=1, stride=2)
-        self.conv2 = nn.Conv2d(32, n_feature*2**2, 3, padding=1, stride=2)
-        self.conv3 = nn.Conv2d(64, n_feature*2**3, 3, padding=1)
-        self.conv4 = nn.Conv2d(128, n_feature*2**4, 3, padding=1, stride=2)
+        self.conv2 = nn.Conv2d(n_feature*2**1, n_feature*2**2, 3, padding=1, stride=2)
+        self.conv3 = nn.Conv2d(n_feature*2**2, n_feature*2**3, 3, padding=1)
+        self.conv4 = nn.Conv2d(n_feature*2**3, n_feature*2**4, 3, padding=1, stride=2)
         
         # max pooling layer
         self.pool = nn.MaxPool2d(2, 2)

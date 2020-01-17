@@ -78,7 +78,7 @@ if __name__=='__main__':
     print(model_scratch)
 
     model_scratch = train_class.train(10, loaders_scratch, model_scratch, optimizer_scratch, 
-                      criterion_scratch, use_cuda, './model/model_scratch.pt') # You can rename this file to save different check point
+                      criterion_scratch, use_cuda, './model/model_cnn_2.pt') # You can rename this file to save different check point
 
     # load the model that got the best validation accuracy
     # model_scratch.load_state_dict(torch.load('./model/model_scratch.pt')) # uncomment only to load the saved model
