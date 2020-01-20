@@ -2,6 +2,8 @@ import numpy as np
 # import custom_loss_print
 import torch
 
+from utilities.helper import plot_classes_preds
+
 # reporter = custom_loss_print.LossPrettifier(show_percentage=True)
 
 class LossPrettifier(object):
@@ -58,7 +60,7 @@ class LossPrettifier(object):
         
 reporter = LossPrettifier(show_percentage=True)
 
-def train(n_epochs, loaders, model, optimizer, criterion, use_cuda, save_path):
+def train(n_epochs, loaders, model, optimizer, criterion, use_cuda, writer, save_path):
     """returns trained model"""
     # initialize tracker for minimum validation loss
     valid_loss_min = np.Inf 
@@ -106,6 +108,20 @@ def train(n_epochs, loaders, model, optimizer, criterion, use_cuda, save_path):
             loss = criterion(output, target)
             # update average validation loss 
             valid_loss +=((1 / (batch_idx + 1)) * (loss.data - valid_loss))
+
+            if batch_idx % 1000 == 999:    # every 1000 mini-batches...
+            # ...log the running loss
+                running_loss = valid_loss
+                writer.add_scalar('training loss',
+                                running_loss / 1000,
+                                epoch * len(loaders['valid']) + batch_idx)
+
+                # ...log a Matplotlib Figure showing the model's predictions on a
+                # random mini-batch
+                writer.add_figure('predictions vs. actuals',
+                                plot_classes_preds(model, data, target),
+                                global_step=epoch * len(loaders['valid']) + batch_idx)
+                running_loss = 0.0
             
             
         # print training/validation statistics 

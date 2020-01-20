@@ -56,10 +56,30 @@ valid_loader = torch.utils.data.DataLoader(train_data, batch_size=32,
 test_loader = torch.utils.data.DataLoader(test_data, batch_size=32)
 
 
+#############
+import torchvision
+from torch.utils.tensorboard import SummaryWriter
 
+# default `log_dir` is "runs" - we'll be more specific here
+writer = SummaryWriter('try/dog_vs_cat')
+
+# get some random training images
+dataiter = iter(train_loader)
+images, labels = dataiter.next()
+
+# create grid of images
+img_grid = torchvision.utils.make_grid(images)
+
+# write to tensorboard
+writer.add_image('10_dog_cat_images', img_grid)
+
+##############
 
 if __name__=='__main__':
     model_scratch = CNN_Classifier_2(n_feature=16, output_size=2)
+
+    writer.add_graph(model_scratch, images)
+    writer.close()
 
     loaders_scratch = {'train': train_loader, 'valid' : valid_loader, 'test': test_loader}
 
@@ -73,15 +93,15 @@ if __name__=='__main__':
     use_cuda = torch.cuda.is_available()
 
     if use_cuda:
-        print("yupiii we are on GPU :)")
+        print("Your code is running on GPU :)\n")
         model_scratch.cuda()
-
+    print("Your code is running on CPU :)\n")
     print(model_scratch)
 
     # Training
     print('Training ....')
     model_scratch = train_class.train(10, loaders_scratch, model_scratch, optimizer_scratch, 
-                      criterion_scratch, use_cuda, './model/model_cnn_2.pt') # You can rename this file to save different check point
+                      criterion_scratch, use_cuda, writer, './model/model_cnn_2.pt') # You can rename this file to save different check point
 
     # load the model that got the best validation accuracy
     # model_scratch.load_state_dict(torch.load('./model/model_scratch.pt')) # uncomment only to load the saved model
