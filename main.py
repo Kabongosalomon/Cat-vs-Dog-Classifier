@@ -95,12 +95,13 @@ if __name__=='__main__':
     if use_cuda:
         print("Your code is running on GPU :)\n")
         model_scratch.cuda()
-    print("Your code is running on CPU :)\n")
+    else:
+        print("Your code is running on CPU :)\n")
     print(model_scratch)
 
     # Training
     print('Training ....')
-    model_scratch = train_class.train(10, loaders_scratch, model_scratch, optimizer_scratch, 
+    model_scratch = train_class.train(5, loaders_scratch, model_scratch, optimizer_scratch, 
                       criterion_scratch, use_cuda, writer, './model/model_cnn_2.pt') # You can rename this file to save different check point
 
     # load the model that got the best validation accuracy
