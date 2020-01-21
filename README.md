@@ -3,6 +3,8 @@
 [image1]: ./images/main.jpg "Cat and Dog"
 [image2]: ./images/model_train_screen.png "Model Screen"
 
+[image3]: ./images/CNN_Classifier_2_Graph.png "Model Architecture"
+
 
 # Cat-vs-Dog-Classifier
 Create an algorithm to distinguish dogs from cats
@@ -12,9 +14,11 @@ In this problem we will write an algorithm to classify whether images contain ei
 
 ![Cat and Dog][image1]
 
+## Problem description
+![Model Architecture][image3]
 
-## Screenshot Model training 
-![Model Screen][image2]
+<!-- ## Screenshot Model training 
+![Model Screen][image2] -->
 
 ## Getting Started
 ### Installation
